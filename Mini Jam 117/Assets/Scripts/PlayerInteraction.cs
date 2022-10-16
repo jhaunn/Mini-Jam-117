@@ -20,7 +20,7 @@ public class PlayerInteraction : MonoBehaviour
             hit.collider.GetComponent<IInteractable>() != null)
         {
             hitInteractable = hit.collider.gameObject.GetComponent<IInteractable>();
-            SetCursorText(hitInteractable.CheckName(), hitInteractable.CheckName());
+            SetCursorText(hitInteractable.CheckName(), hitInteractable.CheckDescription());
 
             if (Input.GetKeyDown(KeyCode.E))
             {

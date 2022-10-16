@@ -20,7 +20,7 @@ public class Collectible : MonoBehaviour, IInteractable
     }
     public void Interact()
     {
-        Debug.Log($"Interacted with {name}");
+        ScoreManager.instance.AddScore();
         gameObject.SetActive(false);
     }
 }
