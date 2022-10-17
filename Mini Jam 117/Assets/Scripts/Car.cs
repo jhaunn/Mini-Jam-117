@@ -4,15 +4,24 @@ using UnityEngine;
 
 public class Car : MonoBehaviour, IInteractable
 {
+    private bool isFinished = false;
+
+    [SerializeField] private GameObject finalGhosts;
+
     public string CheckDescription()
     {
         if (ScoreManager.instance.CheckFinish())
         {
+            if (isFinished)
+            {
+                return "Preparing to quit";
+            }
+
             return "Press E to leave";
         }
         else
         {
-            return "???";
+            return "WASD - Move | E - Interact";
         }
     }
 
@@ -20,23 +29,33 @@ public class Car : MonoBehaviour, IInteractable
     {
         if (ScoreManager.instance.CheckFinish())
         {
-            return "";
+            return "Thank you for playing!";
         }
         else 
         {
-        return "Get all your stuff";
+            return "Find and collect all your stuff";
         }
     }
 
     public void Interact()
     {
-        if (ScoreManager.instance.CheckFinish())
+        if (ScoreManager.instance.CheckFinish() && !isFinished)
         {
-            Debug.Log("Game is finished");
+            isFinished = true;
+            SoundManager.instance.PlaySoundClip(3);
+            Invoke("QuitGame", 3f);
+            finalGhosts.SetActive(true);
         }
-        else
+        else if (!isFinished)
         {
-            Debug.Log("Gather all collectibles");
+            SoundManager.instance.PlaySoundClip(0);
         }
+
+    }
+
+    private void QuitGame()
+    {
+        Application.Quit();
+        Debug.Log("Game has quit");
     }
 }

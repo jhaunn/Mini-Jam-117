@@ -20,6 +20,7 @@ public class Collectible : MonoBehaviour, IInteractable
     }
     public void Interact()
     {
+        SoundManager.instance.PlaySoundClip(1);
         ScoreManager.instance.AddScore();
         gameObject.SetActive(false);
     }
