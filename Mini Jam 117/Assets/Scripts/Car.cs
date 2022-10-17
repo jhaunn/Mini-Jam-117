@@ -6,8 +6,6 @@ public class Car : MonoBehaviour, IInteractable
 {
     private bool isFinished = false;
 
-    [SerializeField] private GameObject finalGhosts;
-
     public string CheckDescription()
     {
         if (ScoreManager.instance.CheckFinish())
@@ -43,8 +41,7 @@ public class Car : MonoBehaviour, IInteractable
         {
             isFinished = true;
             SoundManager.instance.PlaySoundClip(3);
-            Invoke("QuitGame", 3f);
-            finalGhosts.SetActive(true);
+            Invoke("QuitGame", 5f);
         }
         else if (!isFinished)
         {

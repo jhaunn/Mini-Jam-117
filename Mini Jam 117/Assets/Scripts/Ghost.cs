@@ -12,6 +12,7 @@ public class Ghost : MonoBehaviour
         if (Physics.CheckSphere(transform.position, checkRadius, playerLayerMask))
         {
             Debug.Log("Interacted with player");
+            SoundManager.instance.PlaySoundClip(5);
             gameObject.SetActive(false);
         }
     }
